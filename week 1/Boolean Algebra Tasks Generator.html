@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<!-- saved from url=(0075)https://sys.academy.lv/labwork/boolean-algebra-tutorial/boolean-algebra.htm -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="description" content="Boolean Algebra Tasks Generator.">
+    <meta name="keywords" content="boolean, algegra, logic, basics">
+    <meta name="author" content="Ryan Chadwick">
+
+    <title>Boolean Algebra Tasks Generator</title>
+</head>
+
+<body>
+				<p align="right">Author Ryan Chadwick</p>
+				<h2>Boolean Algebra!</h2>
+				<p>It's logical really.</p>
+				<h2>Introduction</h2>
+				<p>We'll start off by covering what exactly Boolean Algebra is and then look at some of the basic building blocks, also referred to as operators.  It may seem a little abstract at this stage but once you've worked through this section and the next it will start to make a bit more sense.</p>
+				<h2>Summary</h2>
+				<div>
+					<dl>
+						<dt>Variable</dt>
+						<dd>An item within a Boolean expression.</dd>
+						
+						<dt>Basic Operators</dt>
+						<dd>AND, OR and NOT.</dd>
+						
+						<dt>Derived Operators</dt>
+						<dd>XOR, NAND and NOR</dd>
+						
+						<dt>Expression</dt>
+						<dd>The result of combining variables and operators.</dd>
+					</dl>
+				</div>
+				
+				<div>
+					<dl>
+						<dt>Only two values</dt>
+						<dd>There are only ever two possible values in Boolean Algebra. Typically True and False but can be others such as 0 and 1.</dd>
+					</dl>
+				</div>
+				
+				<h2>Tasks Generator</h2>
+				
+				<p>Now let's evaluate some expressions.</p>
+				
+				<p><input type="button" value="Generate easy expression" id="beExpressionGenerateEasy" onclick="generateExpression(&quot;easy&quot;)"> <input type="button" value="Generate hard expression" id="beExpressionGenerateHard" onclick="generateExpression(&quot;hard&quot;)"></p>
+				
+				<p><span id="expressionPrinted"></span></p>
+				
+				<p><input type="button" value="Generate values" id="beValuesGenerate" onclick="generateValues()"></p>
+				
+				<ul>
+					<li><span id="expressionVariable1Name"></span> : <span id="expressionVariable1Value"></span></li>
+					<li><span id="expressionVariable2Name"></span> : <span id="expressionVariable2Value"></span></li>
+					<li><span id="expressionVariable3Name"></span> : <span id="expressionVariable3Value"></span></li>
+				</ul>
+				
+				<p><input type="button" value="Show answer" id="beShowAnswer" onclick="printAnswer()"></p>
+				
+				<p><span id="expressionAnswer"></span></p>
+				
+
+				
+				<h2 id="boolean">Boolean Algebra</h2>
+				
+				<p>Boolean Algebra is a way of formally specifying, or describing, a particular situation or procedure.  We use <b>variables</b> to represent elements of our situation or procedure.  Variables may take one of only two values.  Traditionally this would be <b>True</b> and <b>False</b>.  So for instance we may have a variable <b>X</b> and state that this represents if it is raining outside or not. The value of <b>X</b> would be :</p>
+				
+				<ul>
+					<li><b>True</b> if it is raining outside.</li>
+					<li><b>False</b> if it is not raining outside.</li>
+				</ul>
+				
+				<p>What you have to remember is that although many things in the real world exist on a spectrum, in Boolean Algebra things are reduced to black and white.  So we could have, for instance, light rain, steady rain, or heavy rain.  In Boolean Algebra however, it is either raining or it isn't.  This may seem a little limiting but this simplification of things actually turns out to be quite powerful.</p>
+				
+				<p>It is possible to substitute other values in place of True and False.  When working with computers it is often the case that True and False is replaced with <b>1</b> and <b>0</b>.  When working with physical circuits we may replace True and False with the presence or absence of a voltage.</p>
+				
+				<p>In this way Boolean Algebra is useful to describe a process and then to build mechanisms which can perform those processes.  Keep this in mind as you're working through the next few sections.  This is what we are building towards.</p>
+				
+				
+				<h2 id="all">All Operations</h2>
+				
+				<p>For the single variable functions may exist only four different Boolean functions g1, g2, g3 and g4, presented in the following table:</p>
+				<table class="truth">
+					<tbody><tr class="header">
+						<th>X</th>
+						<th>g1</th>
+						<th>g2</th>
+						<th>g3</th>
+						<th>g4</th>
+					</tr>
+					<tr>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>1</td>
+						<td>1</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>0</td>
+						<td>1</td>
+						<td>0</td>
+						<td>1</td>
+					</tr>
+				</tbody></table>
+
+				<p>It follows from the table that the functions g1 and g4 do not depend on the argument and are, respectively, constants 0 and 1, and the function g2 repeats the value of the argument, i.e. g2 = x. The function g3 is called the negation or inverse of the variable x and is denoted not (x).</p>
+				<p>For functions of two variables, there can be 16 (and only 16) different functions. The truth table of these functions is as follows:</p>
+				<table class="truth">
+					<tbody><tr class="header">
+						<th>X</th>
+						<th>Y</th>
+						<th>f0</th>
+						<th>f1</th>
+						<th>f2</th>
+						<th>f3</th>
+						<th>f4</th>
+						<th>f5</th>
+						<th>f6</th>
+						<th>f7</th>
+						<th>f8</th>
+						<th>f9</th>
+						<th>f10</th>
+						<th>f11</th>
+						<th>f12</th>
+						<th>f13</th>
+						<th>f14</th>
+						<th>f15</th>
+					</tr>
+					<tr>
+						<td>0</td>
+						<td>1</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>1</td>
+						<td>1</td>
+						<td>0</td>
+						<td>0</td>
+						<td>1</td>
+						<td>1</td>
+						<td>0</td>
+						<td>0</td>
+						<td>1</td>
+						<td>1</td>
+						<td>0</td>
+						<td>0</td>
+						<td>1</td>
+						<td>1</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>1</td>
+						<td>0</td>
+						<td>1</td>
+						<td>0</td>
+						<td>1</td>
+						<td>0</td>
+						<td>1</td>
+						<td>0</td>
+						<td>1</td>
+						<td>0</td>
+						<td>1</td>
+						<td>0</td>
+						<td>1</td>
+						<td>0</td>
+						<td>1</td>
+						<td>0</td>
+						<td>1</td>
+					</tr>
+					<tr>
+						<td>0</td>
+						<td>AND conjunction</td>
+						<td>ban on y</td>
+						<td>0</td>
+						<td>ban on x</td>
+						<td>0</td>
+						<td>mod 2 addition</td>
+						<td>OR disjunction</td>
+						<td>Pierce's</td>
+						<td>equivalence</td>
+						<td>1</td>
+						<td>implication</td>
+						<td>1</td>
+						<td>implication</td>
+						<td>Schaeffer's</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+					</tr>
+					<tr>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+					</tr>
+				</tbody></table>
+				<p>These functions include 6 degenerate functions (constants: F0 = 0 and F15 = 1; variables: F3 = x1 and F5 = x2; inversions: F12 = not x1 and F10 = not x2).</p>
+
+				<h2 id="basic">Basic Operations</h2>
+				
+				<p>We saw above that variables may be used to represent the current state of elements that we are interested in.  Operations allow us to then define relationships between those variables.  There are three basic operations.  These are used often in Boolean expressions but are also used to create more complex operations. You'll probably find that you've actually used these operations quite a bit,  you've just never thought of them formally before.</p>
+				
+				<p>The result of an operation is similar to variables,  it may only be either <b>True</b> or <b>False</b>.</p>
+				
+				<p class="note">I have chosen to always write operations in all UPPERCASE.  This is so they are easily identified as operations.  Many people follow this convention but it is not required.  Feel free to use whatever method suits you best.</p>
+				
+				
+				<h3>AND</h3>
+				
+				<p>The first operation is <b>AND</b> and it means pretty much what it does in plain english.  So for instance I may state "If it's sunny outside <b>AND</b> I have completed my work then I will go for a run."  To represent this in Boolean Algebra I may say that:</p>
+				
+				<ul>
+					<li><b>x</b> represents if it is sunny outside or not.</li>
+					<li><b>y</b> represents if I have completed my work or not.</li>
+					<li><b>z</b> represents if I go for a run or not.
+				</li></ul>
+				
+				<p>And I would write it like so:</p>
+				
+				<p class="commandoutline">x AND y = z</p>
+				
+				<p>Here it is represented visually.  The shaded region is the region which represents <b>AND</b>.</p>
+				
+				<p class="text-center">
+					<img src="./Boolean Algebra Tasks Generator_files/and.png" alt="Boolean AND operation" class="img-responsive center-block">
+				</p>
+				
+				
+				<p>And now we'll represent it using what is called a <b>Truth table</b>.  A truth table lists all the possible combinations of inputs for an expression (in this case a single operation) and what the result, or output should be.</p>
+				
+				<table class="truth">
+					<tbody><tr class="header">
+						<th>X</th>
+						<th>Y</th>
+						<th>Result</th>
+					</tr>
+					<tr>
+						<td>False</td>
+						<td>False</td>
+						<td>False</td>
+					</tr>
+					<tr>
+						<td>True</td>
+						<td>False</td>
+						<td>False</td>
+					</tr>
+					<tr>
+						<td>False</td>
+						<td>True</td>
+						<td>False</td>
+					</tr>
+					<tr>
+						<td>True</td>
+						<td>True</td>
+						<td>True</td>
+					</tr>
+				</tbody></table>
+				
+				
+				<h3>OR</h3>
+				
+				<p><b>OR</b> is also the same as how we would use it in plain english.  It means that if either of the two variables is <b>True</b> then the result is <b>True</b>.  So for instance I could say that "I will get home early from work if I get to leave early <b>OR</b> the traffic is good".</p>
+				
+				<p>Here is <b>OR</b> represented visually : </p>
+				
+				<p class="text-center">
+					<img src="./Boolean Algebra Tasks Generator_files/or.png" alt="Boolean OR operation" class="img-responsive center-block">
+				</p>
+				
+				<p>And again as a truth table : </p>
+				
+				<table class="truth">
+					<tbody><tr class="header">
+						<th>X</th>
+						<th>Y</th>
+						<th>Result</th>
+					</tr>
+					<tr>
+						<td>False</td>
+						<td>False</td>
+						<td>False</td>
+					</tr>
+					<tr>
+						<td>True</td>
+						<td>False</td>
+						<td>True</td>
+					</tr>
+					<tr>
+						<td>False</td>
+						<td>True</td>
+						<td>True</td>
+					</tr>
+					<tr>
+						<td>True</td>
+						<td>True</td>
+						<td>True</td>
+					</tr>
+				</tbody></table>
+				
+				
+				<p class="tip">Note that <b>AND</b> is False for all but True and True whilst <b>OR</b> is True for all but False and False.  This observation will become useful to us later on.  In fact there are many shortcuts and advantageous benefits to be gained from finding patterns like this so keep an eye out for them.</p>
+				
+				
+				<h3>Not</h3>
+				
+				<p><b>Not</b> is quite similar to how we use it in plain english.  It has a subtle difference when used in Boolean Algebra.  Normally I might say something like "I will eat dessert if I am not full".  I could also have said "I will eat dessert if I am still hungry", which has the same meaning but using an opposite value.  So <b>not</b> actually has the effect of flipping the value of a variable. If :</p>
+				
+				<ul>
+					<li>the variable <b>d</b> currently has a value of <b>True</b> then</li>
+					<li>the expression <b>not d</b> has a result of <b>False</b></li>
+				</ul>
+				
+				<p>Represented visually that is :</p>
+				
+				<p class="text-center">
+					<img src="./Boolean Algebra Tasks Generator_files/not.png" alt="Boolean not operation" class="img-responsive center-block">
+				</p>
+				
+				<p>And as a truth table :</p>
+				
+				<table class="truth">
+					<tbody><tr class="header">
+						<th>X</th>
+						<th>Result</th>
+					</tr>
+					<tr>
+						<td>True</td>
+						<td>False</td>
+					</tr>
+					<tr>
+						<td>False</td>
+						<td>True</td>
+					</tr>
+				</tbody></table>
+				
+				
+				<h2 id="derived">Derived Operations</h2>
+				
+				<p>The above three operations are the building blocks for just about everything else we can do in Boolean Algebra.  We will now introduce what are called <b>derived operations</b>.  These are essentially shortcuts for commonly used combinations of the basic operations.  As we will discover later on, some of these derived operations are very useful when we want to do computations and other things.</p>
+				
+				
+				<h3>XOR or Exclusive OR</h3>
+				
+				<p>With the operation <b>OR</b> we saw that as long as one of the variables is <b>True</b> the result is <b>True</b>.  It was also True if both of them were True.  With the operation <b>XOR</b> we now say that the result will be True only if one of the two variables is True.  That is, one of them is True but only one of them is True. We may build this operation from the basic operations like so :</p>
+				
+				<p class="commandoutline">g XOR p <span class="gray">is equivalent to</span> (g OR p) AND NOT(g AND p)</p>
+				
+				<p class="tip">When brackets <b>( )</b> are used in an expression this means that we evaluate that part of the expression first before the other parts.</p>
+				
+				<p>Let's run through an example to better understand what's going on.</p>
+				
+				<p>If <b>g</b> is True and <b>p</b> is False then :</p>
+				
+				<p>Substituting <b>g</b> and <b>p</b> for those values we get :</p>
+				
+				<p class="commandoutline">(True OR False) AND NOT(True AND False)</p>
+				
+				<p>The first set of brackets <b>(True OR False)</b> <span class="grey">AND NOT(True AND False)</span> evaluates to True so let's replace that into the expression and we get :</p>
+				
+				<p class="commandoutline"><b title="The result of : (True OR False)">True</b> AND NOT(True AND False)</p>
+				
+				<p>The next set of brackets <span class="grey">True AND NOT</span><b>(True AND False)</b> evaluates to False so let's replace that into the expression as well giving us :</p>
+				
+				<p class="commandoutline">True AND NOT(<b title="The result of : True AND False">False</b>)</p>
+				
+				<p><b>NOT(False)</b> evaluates to True so we can apply that to the expression and we end up with :</p>
+				
+				<p class="commandoutline">True and <b title="The result of : NOT(False)">True</b></p>
+				
+				<p>And the final result is <b>True</b>.</p>
+				
+				<p>Visually <b>XOR</b> looks like :</p>
+				
+				<p class="text-center">
+					<img src="./Boolean Algebra Tasks Generator_files/xor.png" alt="Boolean xor operation" class="img-responsive center-block">
+				</p>
+				
+				<p><b>XOR</b> as a truth table :</p>
+				
+				<table class="truth">
+					<tbody><tr class="header">
+						<th>X</th>
+						<th>Y</th>
+						<th>Result</th>
+					</tr>
+					<tr>
+						<td>False</td>
+						<td>False</td>
+						<td>False</td>
+					</tr>
+					<tr>
+						<td>True</td>
+						<td>False</td>
+						<td>True</td>
+					</tr>
+					<tr>
+						<td>False</td>
+						<td>True</td>
+						<td>True</td>
+					</tr>
+					<tr>
+						<td>True</td>
+						<td>True</td>
+						<td>False</td>
+					</tr>
+				</tbody></table>
+				
+				
+				<h3>NAND or NOT AND</h3>
+				
+				<p><b>NAND</b> is effectively the opposite of what AND is.</p>
+				
+				<p class="commandoutline">r NAND S <span class="grey">is equivalent to</span> NOT(r AND s)</p>
+				
+				<p>Visually it looks like this :</p>
+				
+				<p class="text-center">
+					<img src="./Boolean Algebra Tasks Generator_files/nand.png" alt="Boolean NAND operation" class="img-responsive center-block">
+				</p>
+				
+				<p>NAND as a truth table :</p>
+				
+				<table class="truth">
+					<tbody><tr class="header">
+						<th>X</th>
+						<th>Y</th>
+						<th>Result</th>
+					</tr>
+					<tr>
+						<td>False</td>
+						<td>False</td>
+						<td>True</td>
+					</tr>
+					<tr>
+						<td>True</td>
+						<td>False</td>
+						<td>True</td>
+					</tr>
+					<tr>
+						<td>False</td>
+						<td>True</td>
+						<td>True</td>
+					</tr>
+					<tr>
+						<td>True</td>
+						<td>True</td>
+						<td>False</td>
+					</tr>
+				</tbody></table>
+				
+				
+				<h3>NOR or NOT OR</h3>
+				
+				<p>NOR is effectively the opposite of OR.</p>
+				
+				<p class="commandoutline">b NOR k <span class="grey">is equivalent to</span> NOT(b OR k)</p>
+				
+				<p>Visually it looks like this :</p>
+				
+				<p class="text-center">
+					<img src="./Boolean Algebra Tasks Generator_files/nor.png" alt="Boolean NOR operation" class="img-responsive center-block">
+				</p>
+				
+				<p>NOR as a truth table :</p>
+				
+				<table class="truth">
+					<tbody><tr class="header">
+						<th>X</th>
+						<th>Y</th>
+						<th>Result</th>
+					</tr>
+					<tr>
+						<td>False</td>
+						<td>False</td>
+						<td>True</td>
+					</tr>
+					<tr>
+						<td>True</td>
+						<td>False</td>
+						<td>False</td>
+					</tr>
+					<tr>
+						<td>False</td>
+						<td>True</td>
+						<td>False</td>
+					</tr>
+					<tr>
+						<td>True</td>
+						<td>True</td>
+						<td>False</td>
+					</tr>
+				</tbody></table>
+	<script src="./Boolean Algebra Tasks Generator_files/jquery.min.js.загрузка"></script>
+	<script src="./Boolean Algebra Tasks Generator_files/javascript.js.загрузка"></script>
+
+
+</body></html>
